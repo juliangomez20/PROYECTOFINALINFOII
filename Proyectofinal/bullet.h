@@ -3,9 +3,10 @@
 
 #include "librerias.h"
 
+// Declaración de la clase Bullet que hereda de QObject y QGraphicsItem
 class Bullet : public QObject, public QGraphicsItem
 {
-    Q_OBJECT
+    Q_OBJECT // Se marca como un objeto de Qt para admitir señales y ranuras
 private:
     //atributos
     QPixmap *pixmap;
@@ -16,6 +17,7 @@ private:
     QString Balas;
 
 public:
+    // Constructor de la clase Bullet que recibe coordenadas x e y, y dos cadenas
     Bullet(int x, int y,QString, QString, QObject *parent = nullptr);
     //pintar la imagen
     QRectF boundingRect() const;
@@ -29,7 +31,8 @@ public:
 signals:
 
 public slots:
-    //mover el objeto
+
+    // Ranuras (slots) - método para mover el objeto
      void move();
 
 };
