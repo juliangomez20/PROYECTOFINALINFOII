@@ -1,65 +1,77 @@
 #include "bullet.h"
 
-Bullet::Bullet (int x, int y, QString direc,QString balas ,QObject *parent) : QObject(parent)
+// Constructor de la clase Bullet
+Bullet::Bullet(int x, int y, QString direc, QString balas, QObject *parent) : QObject(parent)
 {
+    // Inicialización de atributos
+    Pos_X = x;
+    Pos_Y = y;
+    direction = direc;
+    Balas = balas;
+    Ancho = 20;
+    Alto = 10;
 
-    Pos_X=x;
-    Pos_Y=y;
-    direction=direc;
-    Balas =balas;
-    Ancho=20;
-    Alto=10;
-    //pinta una imagen dpendiendo de la derecion
-    if(direction=="derecha"){
-        pixmap=new QPixmap(":/Personaje/objetos/Lama_der.png");
+    // Selecciona la imagen de la bala según la dirección
+    if (direction == "derecha")
+    {
+        pixmap = new QPixmap(":/Personaje/objetos/Lama_der.png");
     }
-    if(direction=="izquierda"){
-        pixmap=new QPixmap(":/Personaje/objetos/Llama_Iz.png");
+    if (direction == "izquierda")
+    {
+        pixmap = new QPixmap(":/Personaje/objetos/Llama_Iz.png");
     }
-    //comienza un timer para que mueva l bala depues de ser creado
-    timer_bullet  = new QTimer();
-    connect(timer_bullet, SIGNAL(timeout()), this, SLOT(move()));
+
+    // Inicializa un temporizador para mover la bala después de ser creada
+    timer_bullet = new QTimer();
+    connect(timer_bullet, SIGNAL(timeout()), this, SLOT(move())); //Se llama move()
     timer_bullet->start(100); // Velocidad de la bala
-    setPos(Pos_X,Pos_Y);
+    setPos(Pos_X, Pos_Y);
 }
 
+// Método que devuelve el rectángulo delimitador de la bala
 QRectF Bullet::boundingRect() const
 {
-    return QRectF(0,0,Ancho,Alto); // se crea el rectangulo con su centro que son los primeros dos parametros y su ancho y alto
+    return QRectF(0, 0, Ancho, Alto);
 }
 
+// Método para pintar la bala en la escena
 void Bullet::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->drawPixmap(boundingRect(),*pixmap,pixmap->rect()); // Se pinta en el rectangulo usando el pixmap
+    painter->drawPixmap(boundingRect(), *pixmap, pixmap->rect());
     UNUSED(option);
     UNUSED(widget);
 }
 
+// Método para obtener la dirección de la bala
 QString Bullet::getdirection()
 {
-    return  direction;
+    return direction;
 }
 
+// Método para obtener la posición X de la bala
 int Bullet::getposx()
 {
     return Pos_X;
 }
 
+// Método para obtener información sobre las balas
 QString Bullet::get_Balas()
 {
     return Balas;
 }
-void Bullet::move() //mueve la bala dependiento de la direcion
 
+// Método para mover la bala dependiendo de la dirección
+void Bullet::move()
 {
-    if(direction=="derecha"){
-        Pos_X+=5;
-        setX(Pos_X);  // Cuanto se desplaza la bala en la pantalla. movimiento de la bala
+    if (direction == "derecha")
+    {
+        Pos_X += 5;
+        setX(Pos_X);
     }
-    if(direction=="izquierda"){
-        Pos_X-=5;
-        setX(Pos_X);  // Cuanto se desplaza la bala en la pantalla. movimiento de la bala
+    if (direction == "izquierda")
+    {
+        Pos_X -= 5;
+        setX(Pos_X);
     }
 }
-
 

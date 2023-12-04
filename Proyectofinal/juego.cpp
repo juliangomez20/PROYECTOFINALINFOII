@@ -12,7 +12,7 @@ Juego::Juego(int pos_xj, int pos_yj,int pos_xp,int pos_yp,int puntaje_maximo,QSt
     Pos_XP = pos_xp;
     Pos_YP = pos_yp;
     usuario = usu;
-    contrasea =contra;
+    contrasea = contra;
     Puntaje_Maximo = puntaje_maximo;
     winer= new Winer;
     findeljuego= new Findeljuego;
@@ -86,7 +86,7 @@ Juego::Juego(int pos_xj, int pos_yj,int pos_xp,int pos_yp,int puntaje_maximo,QSt
         }
     }
 
-    //creo un jugador y lo agrego a la ecena
+    //creo un jugador y lo agrego a la escena
     jugador=new Jugador(Pos_XJ,Pos_YJ); // le doy los valores de x y y
     scene->addItem(jugador);
 
@@ -106,7 +106,7 @@ Juego::Juego(int pos_xj, int pos_yj,int pos_xp,int pos_yp,int puntaje_maximo,QSt
     scene->addItem(puntaje);
 
 
-    //Inici el tipo de la colociones
+    //Inicio el tipo de las coliciones
     timerColisiones=new QTimer;
     connect(timerColisiones,SIGNAL(timeout()),this,SLOT(colisiones()));
     timerColisiones->start(0);
@@ -142,7 +142,7 @@ void Juego::timerEvent(QTimerEvent *)
             }
 
             scene->addItem(listBullet.last());
-            Balas = false;
+            Balas = true;
         }
     }
     else {
@@ -171,18 +171,18 @@ void Juego::timerEvent(QTimerEvent *)
 }
 void Juego::colisiones()
 {
-    //colisiones de las paltaformas
+    //colisiones de las plataformas
     for(int i=0;i<listPlataformas.size();i++)
     {
-        //Colisin para que se quede arriba de las plataformas
+        //Colision para que se quede arriba de las plataformas
         listPlataformas.at(i)->Actualizar_Pos_Per(jugador);
-        //Colision de las moneas
+        //Colision con el borojó
         if(listPlataformas.at(i)->getClase() == "Moneda" && listPlataformas.at(i)->collidesWithItem(jugador)){
             puntaje->Aumentarpuntaje(100);
             scene->removeItem(listPlataformas.at(i));
             listPlataformas.removeAt(i);
         }
-        //Colision para que desaparescan las balas
+        //Colision para que desaparezcan las balas
         for(int j=0;j<listBullet.size();j++){
             if(listPlataformas.at(i)->getClase() == "Pared" && listPlataformas.at(i)->collidesWithItem(listBullet.at(j))){
                 scene->removeItem(listBullet.at(j));
@@ -271,7 +271,7 @@ void Juego::colisiones()
 
        }
    }
-   //Coliones de las cierra
+   //Coliones de las sierra(disco)
    for (int i =0;i<listDisco.size();i++) {
        if (listDisco.at(i)->collidesWithItem(jugador)){
            if(ListdeVidas.size()==0){

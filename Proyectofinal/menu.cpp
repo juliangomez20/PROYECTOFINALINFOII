@@ -16,7 +16,7 @@ Menu::~Menu()
 }
 
 void Menu::on_pushButton_clicked()
-// al clikear un boton abre ell modo logiarse
+// al clikear un boton abre el modo logiarse
 {
     hide();
     iniciodesesion->show();

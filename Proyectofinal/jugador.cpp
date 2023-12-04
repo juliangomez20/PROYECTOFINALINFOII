@@ -3,7 +3,7 @@
 Jugador::Jugador(int x, int y , QObject *parent): QObject(parent)
 {
     pixmap=new QPixmap(":/Personaje/Pesonaje/Stop Derecha.png");
-    //pixmap=new QPixmap(":/Personaje/Pesonaje/Jefe Final.png");
+
     EstadoPosicionBase=true;
     falling=false;
     direction="derecha";
@@ -17,7 +17,7 @@ Jugador::Jugador(int x, int y , QObject *parent): QObject(parent)
     velY=-50;
     velCaida=0;
 
-    // conecta el timepo con el salto y con la caida libre
+    // conecta el tiempo con el salto y con la caida libre
     timerSalto=new QTimer;
     connect(timerSalto,SIGNAL(timeout()),this,SLOT(salto()));
     timerCaida=new QTimer;
@@ -26,7 +26,7 @@ Jugador::Jugador(int x, int y , QObject *parent): QObject(parent)
     connect(timerfricion,SIGNAL(timeout()),this,SLOT(fricion()));
 
 
-    //ubicar el persnaje en la poscion que se creo
+    //ubicar el personaje en la poscion que se creo
     setPos(Pos_X,Pos_Y);
 }
 

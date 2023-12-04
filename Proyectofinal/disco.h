@@ -3,11 +3,13 @@
 
 #include "librerias.h"
 
+// Declaración de la clase Disco que hereda de QObject y QGraphicsItem
 class Disco : public QObject, public QGraphicsItem
 {
-    Q_OBJECT
+    Q_OBJECT  // Se marca como un objeto de Qt para admitir señales y ranuras
+
 private:
-    //atributos
+    // Atributos privados de la clase Disco
     int Pos_X, Pos_Y;
     int Vel_X;
     int Alto, Ancho;
@@ -17,34 +19,34 @@ private:
     QPixmap *pixmap;
     QTimer *timermove;
     QTimer *timermoveX;
-public:
-    explicit Disco(int x, int y, QString clase,QObject *parent = nullptr);
 
-    //pinto la imaagen
+public:
+    // Constructor de la clase Disco
+    explicit Disco(int x, int y, QString clase, QObject *parent = nullptr);
+
+    // Métodos públicos para pintar la imagen y obtener información
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
-    //metodos get
+    // Métodos Get para obtener información sobre el Disco
     int getVelX();
     int getWidth();
     int get_Pos_X();
     QString getDirection();
 
-
-    //metodos set
-    void setVelX(int );
+    // Métodos Set para establecer valores en el Disco
+    void setVelX(int);
     void set_Pos_X(int);
     void setDirection(QString);
 
-
 signals:
 
-public slots:
 
-    //funciones para rotarlo y moverlo
-    void moveRotation();
-    void mover_X();
+public slots:
+    // Ranuras (slots) para funciones específicas
+    void moveRotation();  // Función para rotar el disco
+    void mover_X();       // Función para mover el disco en el eje X
 };
 
-
 #endif // DISCO_H
+

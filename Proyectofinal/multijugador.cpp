@@ -123,7 +123,7 @@ void Multijugador::timerEvent(QTimerEvent *)
             }
 
             scene->addItem(listBullet.last());
-            Balas = false;
+            Balas = true;
         }
         if(keys[Qt::Key_P]){
             if(jugador2->getDireccion()=="derecha"){
@@ -134,7 +134,7 @@ void Multijugador::timerEvent(QTimerEvent *)
             }
 
             scene->addItem(listBullet.last());
-            Balas = false;
+            Balas = true;
         }
     }
     else {
