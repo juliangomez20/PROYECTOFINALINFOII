@@ -80,6 +80,7 @@ void Plataformas::Actualizar_Pos_Per(Jugador *personaje)
            personaje->set_X(Pos_der_pla);
         }
     }
+    //Trampolin, hace saltar al personaje para que este justo sobre la plataforma
      if(Clase == "Tranpolin" && Pos_der_per >= Pos_iz_pla && Pos_iz_per <= Pos_der_pla && Pos_aba_per >= Pos_ari_pla && Pos_ari_per <=Pos_aba_pla){
          personaje->set_Vel_Y(Salto);
          Salto +=1;

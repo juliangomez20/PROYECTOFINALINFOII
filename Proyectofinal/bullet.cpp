@@ -24,7 +24,7 @@ Bullet::Bullet(int x, int y, QString direc, QString balas, QObject *parent) : QO
     // Inicializa un temporizador para mover la bala después de ser creada
     timer_bullet = new QTimer();
     connect(timer_bullet, SIGNAL(timeout()), this, SLOT(move())); //Se llama move()
-    timer_bullet->start(100); // Velocidad de la bala
+    timer_bullet->start(10); // Velocidad de la bala
     setPos(Pos_X, Pos_Y);
 }
 

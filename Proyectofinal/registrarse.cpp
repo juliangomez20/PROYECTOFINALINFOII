@@ -60,7 +60,7 @@ void Registrarse::on_pushButton_clicked()// cuando presionas el boton abre guard
     archivo.close();
 }
 
-// si ya te registrastte para logiarte
+// si ya te registrastte para loguearte
 
 void Registrarse::on_pushButton_2_clicked()
 {
